@@ -34,7 +34,7 @@ class Solution{
 
     public:
     std::string convert(std::string s, int numRows){        
-        if(numRows >= s.length()) return s;
+        if(numRows >= s.length() || numRows == 1) return s;
         std::string out;
         for(int i = 0; i <= numRows - 1; i++){
             int index = i;
