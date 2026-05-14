@@ -99,7 +99,7 @@ class Solution {
         ListNode g = new ListNode(2);
         ListNode h = new ListNode(6, g);
 
-        ListNode temp = mergeKLists(new ListNode[]{null, h, f});
+        ListNode temp = mergeKLists(new ListNode[]{null, h, f, c});
 
         // ArrayList<Integer> temp = new ArrayList<>();
         // temp.add(1);
