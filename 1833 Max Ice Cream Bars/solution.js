@@ -28,8 +28,6 @@ const maxIceCream = (costs, coins) => {
             }else break;
         }
     }
-    
-
     return out;
 }
 
