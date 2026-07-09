@@ -15,5 +15,5 @@ const reverse = (x) => {
     return reversedNum;
 }
 
-console.log(reverse(12000000));
+console.log(reverse(12000));
 
