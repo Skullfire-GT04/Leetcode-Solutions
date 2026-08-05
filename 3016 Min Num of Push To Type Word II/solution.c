@@ -7,16 +7,20 @@ int minimumPushes(char* word){
     int used = 0;
 
     int count_map[26];
+    int copy_count_map[26];
     int push_map[26];
 
     for(int i = 0; i < 26; i++){
         count_map[i] = 0;
         push_map[i] = 0;
+        copy_count_map[i] = 0;
     }
 
     for(int i = 0; i < n; i++){
         count_map[word[i] - 'a']++;
+        copy_count_map[word[i] - 'a']++;
     }
+
     while(used < 26){
         int curr_max = 0;
         for(int i = 0; i < 26; i++){
@@ -29,12 +33,12 @@ int minimumPushes(char* word){
         used++;
     }
 
-    for(int i = 0; i < 26; i++){
-        if(count_map[i] == -1) printf("%c : %d\n", i + 'a', push_map[i]);
-    }
+    // for(int i = 0; i < 26; i++){
+    //     if(count_map[i] == -1) printf("%c : %d\n", i + 'a', push_map[i]);
+    // }
 
-    for(int i = 0; i < n; i++){
-        push_count += push_map[word[i] - 'a'];
+    for(int i = 0; i < 26; i++){
+        push_count += push_map[i] * copy_count_map[i];
     }
 
     return push_count;
