@@ -25,7 +25,7 @@ class ListNode{
 }
 
 
-class Solution {
+class SortNode {
     
     public static void merge(ListNode leftNode, ListNode rightNode, ListNode out){
         ListNode l = leftNode, r = rightNode, i = out;

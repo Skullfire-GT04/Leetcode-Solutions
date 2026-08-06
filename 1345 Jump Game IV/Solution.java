@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
-class Solution{
+class MinJumps{
 
     public static int minJumps(int[] arr){
         int distance = 0;

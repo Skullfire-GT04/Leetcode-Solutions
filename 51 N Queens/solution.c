@@ -3,7 +3,7 @@
 #include <stdbool.h>
 
 
-#define NUM_QUEENS 7
+#define NUM_QUEENS 9
 
 
 void print_answer(char*** board, int n, int count){

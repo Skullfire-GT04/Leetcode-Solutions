@@ -22,7 +22,7 @@ class ListNode{
     }
 }
 
-class Solution{
+class SwapPairs{
 
     public static ListNode swapPairs(ListNode head){
         if(head == null) return null;

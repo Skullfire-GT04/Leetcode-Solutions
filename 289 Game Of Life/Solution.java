@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class Solution{
+class GameOfLife{
 
     public static int getAliveCount(int[][] board, int row, int col, int num_rows, int num_cols){
         int out = 0;

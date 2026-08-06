@@ -1,6 +1,6 @@
 
 
-class solution {
+class MaxProduct {
     
     public static int maxProduct(int[] nums){
         int[] maxes = new int[2];

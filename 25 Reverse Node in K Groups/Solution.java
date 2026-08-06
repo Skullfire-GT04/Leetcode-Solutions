@@ -22,7 +22,7 @@ class ListNode{
     }
 }
 
-class Solution {
+class ReverseKGroup {
     
     public static ListNode reverseKGroup(ListNode head, int k){
         ListNode out = null;

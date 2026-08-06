@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-class Solution{
+class MissingElements{
 
     public static List<Integer> findMissingElements(int[] nums){
         List<Integer> out = new ArrayList<>();

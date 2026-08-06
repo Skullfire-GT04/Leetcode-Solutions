@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-class Solution{
+class IsGood{
     public boolean isGood(int[] nums){
         HashMap<Integer, Integer> itemMap = new HashMap<>();
 

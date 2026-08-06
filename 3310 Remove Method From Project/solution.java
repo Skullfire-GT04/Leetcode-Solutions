@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-class Solution{
+class RemainingMethods{
 
     public static List<Integer> remainingMethods(int n, int k, int[][] invocations){
         List<Integer> out = new ArrayList<>();

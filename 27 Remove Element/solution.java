@@ -1,6 +1,6 @@
 
 
-class solution {
+class RemoveElement {
 
     public static int removeElement(int[] nums, int val){
         int count = nums.length;
