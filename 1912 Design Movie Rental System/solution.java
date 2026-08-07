@@ -9,12 +9,10 @@ class MovieRentingSystem{
     private class MovieItem{
 
         int id, shop, price;
-        boolean rented;
         MovieItem(int id, int shop, int price){
             this.id = id;
             this.shop = shop;
             this.price = price;
-            this.rented = false;
         }
 
         @Override
