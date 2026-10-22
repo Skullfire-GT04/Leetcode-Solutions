@@ -12,28 +12,12 @@ void printIntervals(int** intervals, size_t size){
 }
 
 
-int find_overlapping_value_interval(int** intervals, size_t intervalsSize, int value){
-    int l = 0, r = intervalsSize;
-    while(l <= r){
-        int index = (l + r) / 2;
-        if(intervals[index][0] <= value && intervals[index][1] >= value){
-            return index;
-        }else{
-            if(intervals[index][1] < value){
-                l = index + 1;
-            }else r = index - 1;
-        }
-    }
-    return l;
-}
-
-
 void insertInterval(int*** intervals, int* size, int start, int end){
     *intervals = (int**) realloc(*intervals, sizeof(int*) * (*size + 1));
     (*size)++;
-    *intervals[*size - 1] = (int*) malloc(sizeof(int) * 2);
-    *intervals[*size - 1][0] = start;
-    *intervals[*size - 1][1] = end;
+    (*intervals)[*size - 1] = (int*) malloc(sizeof(int) * 2);
+    (*intervals)[*size - 1][0] = start;
+    (*intervals)[*size - 1][1] = end;
 }
 
 
@@ -43,19 +27,17 @@ int** insert(int** intervals, int intervalsSize, int* intervalsColSize, int* new
     int size = 0;
     
     int not_overlapping = 0, at_end = 0;
-    if(intervals[0][0] > newInterval[1]){
-        not_overlapping = 1;
-        insertInterval(&out, &size, newInterval[0], newInterval[1]);
-    }
-    if(intervals[intervalsSize - 1][1] < newInterval[0]){
+    if(!intervalsSize){
         not_overlapping = 1;
         at_end = 1;
     }
-    
-    int start_index, end_index;
-    if(!not_overlapping){
-        start_index = find_overlapping_value_interval(intervals, intervalsSize, newInterval[0]);
-        end_index = find_overlapping_value_interval(intervals, intervalsSize, newInterval[1]);
+    else if(intervals[0][0] > newInterval[1]){
+        not_overlapping = 1;
+        insertInterval(&out, &size, newInterval[0], newInterval[1]);
+    }
+    else if(intervals[intervalsSize - 1][1] < newInterval[0]){
+        not_overlapping = 1;
+        at_end = 1;
     }
     
     if(not_overlapping){
@@ -67,26 +49,37 @@ int** insert(int** intervals, int intervalsSize, int* intervalsColSize, int* new
         }
     }else{
         int index = 0;
-        while(index < start_index){
+        while(!(intervals[index][0] >= newInterval[0]) && !(intervals[index][0] <= newInterval[0] && intervals[index][1] >= newInterval[0])){
             insertInterval(&out, &size, intervals[index][0], intervals[index][1]);
             index++;
         }
         int start = newInterval[0] < intervals[index][0] ? newInterval[0] : intervals[index][0];
-        int end = newInterval[1] > intervals[index][1] ? newInterval[1] : intervals[index][1];
-        insertInterval(&out, &size, start, end);
-        index = end_index + 1;
-        while(index < intervalsSize){
-            insertInterval(&out, &size, intervals[index][0], intervals[index][1]);
-            index++;
+        while(index < intervalsSize && intervals[index][1] < newInterval[1]) index++;
+
+        if(index < intervalsSize){
+            int end;
+            if(intervals[index][0] <= newInterval[1]){
+                end = intervals[index][1];
+                index++;
+            }else{
+                end = newInterval[1];
+            }
+            insertInterval(&out, &size, start, end);
+            while(index < intervalsSize){
+                insertInterval(&out, &size, intervals[index][0], intervals[index][1]);
+                index++;
+            }
+        }
+        else{
+            insertInterval(&out, &size, start, newInterval[1]);
         }
     }
-
+    
     *returnSize = size;
     *returnColSize = (int*) malloc(sizeof(int) * size);
     for(int i = 0; i < size; i++){
-        *returnColSize[i] = 2;
+        (*returnColSize)[i] = 2;
     }
-
     return out;
 }
 
@@ -114,8 +107,8 @@ int main(){
 
 
     int* new_interval = (int*) malloc(sizeof(int) * 2);
-    new_interval[0] = 17;
-    new_interval[1] = 20;
+    new_interval[0] = 4;
+    new_interval[1] = 8;
 
     int* returnSize = (int*) malloc(sizeof(int));
     int* returnColSize;
