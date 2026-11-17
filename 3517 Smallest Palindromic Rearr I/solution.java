@@ -1,6 +1,4 @@
-
-
-public class solution {
+class solution {
     
     public static String smallestPalindrome(String s){
         int[] char_count = new int[26];
